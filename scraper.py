@@ -17,14 +17,6 @@ SECRET = tokens['secret']
 
 f.close()
 
-# Retrieve JSON of current URLs 
-#f = open(WRITE_FILE, 'w+')
-
-#if f != None:
-#    curr_urls = json.load(f)
-
-#print(curr_urls)
-
 # Initialize FlickrAPI
 flickr = FlickrAPI(API_KEY, SECRET, format='parsed-json')
 
@@ -67,7 +59,6 @@ def manage_dir(state):
     existing_dir = os.path.exists(path)
 
     if existing_dir:
-        # Will substitute this line for something more intelligent later. 
         pass
     else:
         os.mkdir(path)
@@ -96,8 +87,8 @@ def write_to_json(url_dict, file):
 
 def main():
     url_dict = retreive_urls(states, IMG_LIMIT)
-    #save_imgs(url_dict, states)
-    #write_to_json(url_dict, WRITE_FILE)
+    save_imgs(url_dict, states)
+    write_to_json(url_dict, WRITE_FILE)
 
 if __name__ == "__main__":
     main()
